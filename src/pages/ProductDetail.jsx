@@ -3,6 +3,7 @@ import React, { useState, useContext } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { CartContext } from "../context/CartContext";
 import "../styles/product-detail.css"; // Import file CSS riêng cho trang này
+import Footer from "../components/Footer";
 
 const ProductDetail = () => {
   const location = useLocation();
@@ -59,6 +60,8 @@ const ProductDetail = () => {
           </button>
         </div>
       </div>
+      
+      <Footer />
     </div>
   );
 };

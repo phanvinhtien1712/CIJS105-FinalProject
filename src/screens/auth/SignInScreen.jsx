@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
-
+import Footer from "../../components/Footer";
 const SignInWrapper = styled.div`
   max-width: 400px;
   margin: 25rem auto;
@@ -50,6 +50,7 @@ const SignInWrapper = styled.div`
 `;
 
 const SignInScreen = () => {
+  
   const navigate = useNavigate();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -72,7 +73,7 @@ const SignInScreen = () => {
       alert("Tên người dùng hoặc mật khẩu không chính xác.");
     }
   };
-
+  
   return (
     <SignInWrapper>
       <h2>Đăng Nhập</h2>
@@ -97,7 +98,7 @@ const SignInScreen = () => {
         Bạn chưa có tài khoản? <Link to="/sign_up">Đăng Ký</Link>
       </div>
     </SignInWrapper>
+    
   );
 };
-
 export default SignInScreen;

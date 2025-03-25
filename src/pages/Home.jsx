@@ -1,6 +1,10 @@
 import React, { useEffect } from "react";
 import mixitup from "mixitup";
 import { Link } from "react-router-dom";
+import ScrollReveal from "scrollreveal";
+import {
+  RiArrowUpLine,
+} from "react-icons/ri";
 import { RiShoppingCartLine } from "react-icons/ri";
 // Import react-slick and CSS
 import Slider from "react-slick";
@@ -26,7 +30,7 @@ import popular2 from "../assets/popular2.png";
 import popular3 from "../assets/popular3.png";
 import popular4 from "../assets/popular4.png";
 import features from "../assets/features.png";
-
+import Footer from "../components/Footer";
 function Home() {
   useEffect(() => {
     const container = document.querySelector(".brands_content");
@@ -36,6 +40,26 @@ function Home() {
         animation: { duration: 300 },
       });
     }
+
+    const sr = ScrollReveal({
+      origin: "top",
+      distance: "60px",
+      duration: 2500,
+      delay: 400,
+      // reset: true,
+    });
+
+    sr.reveal(`.home_title,.popular_container,.features_img,.brands_filters`);
+    sr.reveal(`.home_subtitle`, { delay: 500 });
+    sr.reveal(`.home_elec`, { delay: 600 });
+    sr.reveal(`.home_img`, { delay: 800 });
+    sr.reveal(`.home_car-data`, { delay: 1000, interval: 200, origin: "bottom" });
+    sr.reveal(`.home_button`, { delay: 1000, interval: 200, origin: "bottom" });
+    sr.reveal(`.about_group,.offer_data`, { origin: "left" });
+    sr.reveal(`.about_data,.offer_img`, { origin: "right" });
+    sr.reveal(`.features_map`, { delay: 600, origin: "bottom", interval: 200 });
+    sr.reveal(`.features_card,.logos_content,.footer_content`, { interval: 300 });
+    sr.reveal(`.brands_card`, { interval: 200 });
   }, []);
 
   const handleActive = (e) => {
@@ -476,109 +500,10 @@ function Home() {
           </div>
         </div>
       </section>
-      <section className="footer section">
-        <div className="shape shape_big"></div>
-        <div className="shape shape_small"></div>
-        <div className="footer_container container grid">
-          <div className="footer_content">
-            <Link to="/" className="footer_logo">
-              <i className="ri-roadster-line"></i> AutoHunt
-            </Link>
-            <p className="footer_description">
-              AutoHunt cung cấp những chiếc xe điện hiệu suất cao được sản xuất
-              bởi các thương hiệu nổi tiếng.
-            </p>
-          </div>
-          <div className="footer_content">
-            <h3 className="footer_title">Company</h3>
-            <ul className="footer_links">
-              <li>
-                <Link to="/about" className="footer_link">
-                  About
-                </Link>
-              </li>
-              <li>
-                <Link to="/popular" className="footer_link">
-                  Cars
-                </Link>
-              </li>
-              <li>
-                <Link to="/" className="footer_link">
-                  History
-                </Link>
-              </li>
-              <li>
-                <Link to="/" className="footer_link">
-                  Shop
-                </Link>
-              </li>
-            </ul>
-          </div>
-          <div className="footer_content">
-            <h3 className="footer_title">Information</h3>
-            <ul className="footer_links">
-              <li>
-                <Link to="/" className="footer_link">
-                  Request a quote
-                </Link>
-              </li>
-              <li>
-                <Link to="/" className="footer_link">
-                  Find a dealer
-                </Link>
-              </li>
-              <li>
-                <Link to="/" className="footer_link">
-                  Contact us
-                </Link>
-              </li>
-              <li>
-                <Link to="/" className="footer_link">
-                  Services
-                </Link>
-              </li>
-            </ul>
-          </div>
-          <div className="footer_content">
-            <h3 className="footer_title">Follow us</h3>
-            <ul className="footer_social">
-              <li>
-                <a
-                  href="https://www.facebook.com/AutoHuntofficial"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="footer_social-link"
-                >
-                  <i className="ri-facebook-box-fill"></i>
-                </a>
-              </li>
-              <li>
-                <a
-                  href="https://www.instagram.com/autohunt_/"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="footer_social-link"
-                >
-                  <i className="ri-instagram-line"></i>
-                </a>
-              </li>
-              <li>
-                <a
-                  href="https://x.com/autohuntsg"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="footer_social-link"
-                >
-                  <i className="ri-twitter-line"></i>
-                </a>
-              </li>
-            </ul>
-          </div>
-        </div>
-        <span className="footer_copy">
-          © AutoHunt Việt Nam 2024. All right reserved
-        </span>
-      </section>
+     <Footer/>
+    <a href="#" class="scrollup" id="scroll-up">
+      <RiArrowUpLine />
+    </a>
     </main>
   );
 }

@@ -58,6 +58,7 @@ const CheckOut = () => {
         </table>
       )}
     </div>
+    
   );
 };
 

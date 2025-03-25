@@ -7,8 +7,8 @@ import {
   RiRoadsterLine,
   RiUserLine,
   RiMoonLine,
-  RiShoppingCartLine,
-  RiArrowDownSLine, // thêm icon dropdown
+  RiSunLine,
+  RiArrowDownSLine,
 } from "react-icons/ri";
 
 function Navbar() {
@@ -19,6 +19,7 @@ function Navbar() {
     JSON.parse(localStorage.getItem("currentUser"))
   );
   const [userDropdownOpen, setUserDropdownOpen] = useState(false);
+  const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
 
   const toggleMenu = () => setMenuOpen(!menuOpen);
   const toggleUserDropdown = () => setUserDropdownOpen((prev) => !prev);
@@ -28,6 +29,21 @@ function Navbar() {
 
   useEffect(() => {
     setCurrentUser(JSON.parse(localStorage.getItem("currentUser")));
+  }, []);
+
+  useEffect(() => {
+    document.body.className = theme === "dark" ? "dark-theme" : "light-theme";
+    localStorage.setItem("theme", theme);
+  }, [theme]);
+
+  useEffect(() => {
+    const scrollHeader = () => {
+      const header = document.getElementById("header");
+      if (window.scrollY >= 50) header.classList.add("scroll-header");
+      else header.classList.remove("scroll-header");
+    };
+    window.addEventListener("scroll", scrollHeader);
+    return () => window.removeEventListener("scroll", scrollHeader);
   }, []);
 
   const handleLogout = () => {
@@ -40,6 +56,12 @@ function Navbar() {
 
   const handleCartClick = () => {
     navigate("/check-out");
+  };
+
+  const toggleTheme = () => {
+    const newTheme = theme === "light" ? "dark" : "light";
+    setTheme(newTheme);
+    localStorage.setItem("selected-theme", newTheme);
   };
 
   return (
@@ -116,32 +138,13 @@ function Navbar() {
         <div className="nav_toggle" id="nav-toggle" onClick={toggleMenu}>
           <RiMenuLine />
         </div>
-        <div className="theme-button" id="theme-button">
-          <RiMoonLine className="theme-icon" id="theme-icon" />
-        </div>
-        {/* <div
-          className="nav_cart"
-          onClick={handleCartClick}
-          style={{ cursor: "pointer", position: "relative" }}
-        >
-          <RiShoppingCartLine size={24} />
-          {cart.length > 0 && (
-            <span
-              style={{
-                position: "absolute",
-                top: "-8px",
-                right: "-8px",
-                background: "red",
-                borderRadius: "50%",
-                padding: "2px 6px",
-                fontSize: "12px",
-                color: "#fff",
-              }}
-            >
-              {cart.length}
-            </span>
+        <div className="theme-button" id="theme-button" onClick={toggleTheme}>
+          {theme === "light" ? (
+            <RiMoonLine className="theme-icon" id="theme-icon" />
+          ) : (
+            <RiSunLine className="theme-icon" id="theme-icon" />
           )}
-        </div> */}
+        </div>
       </nav>
     </header>
   );

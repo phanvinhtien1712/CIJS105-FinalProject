@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import emailjs from "emailjs-com";
 import "../styles/contact.css";
-
+import Footer from "../components/Footer";
 const ContactScreen = () => {
   const navigate = useNavigate();
   const { state } = useLocation();
@@ -104,6 +104,7 @@ const ContactScreen = () => {
       </div>
     </div>
   );
+  
 };
 
 export default ContactScreen;
